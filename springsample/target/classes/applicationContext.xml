@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="stockDAOBean" class="com.dao.StockDAO">
+
+	</bean>
+
+	<bean id="stockServiceBean" class="com.service.StockService">
+		<property name="stockDAO" ref="stockDAOBean" />
+	</bean>
+
+
+	<!-- <bean id="stockControllerBean" class="com.controller.StockController">  -->
+	<bean id="stockControllerBean" class="com.controller.StockController" 
+			scope="prototype">
+		<!-- <property name="service" ref="stockServiceBean" />  -->
+		<constructor-arg name="service" ref="stockServiceBean"/>
+	</bean>
+
+</beans>
